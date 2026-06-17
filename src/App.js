@@ -176,7 +176,7 @@ function App() {
         </div>
         <nav className="nav">
           <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
+          {/* <a href="#contact">Contact</a> */}
         </nav>
         <div className="contact-phone">Call on +91 9412333244</div>
       </header>
@@ -385,7 +385,7 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
         </div>
       </section>
 
-      <section id="contact" className="contact">
+      {/* <section id="contact" className="contact">
         <div className="contact-container">
           <h2>Get in Touch</h2>
           <p>Ready to transform your business? Contact us today!</p>
@@ -396,7 +396,7 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
             <button type="submit">Send Message</button>
           </form>
         </div>
-      </section>
+      </section> */}
 
       <footer className="footer">
         
