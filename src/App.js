@@ -218,29 +218,59 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
             </p>
             <div className="why-grid">
               <div className="why-card">
-                <div className="why-icon"></div>
+                <div className="why-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="6" width="20" height="12" rx="2" ry="2" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <path d="M2 10h20" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <path d="M6 16v-2" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <path d="M10 16v-2" fill="none" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                </div>
                 <p>Payment Gateway Integration</p>
               </div>
               <div className="why-card">
-                <div className="why-icon"></div>
+                <div className="why-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 7h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7z" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <path d="M4 11h16" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <path d="M7 4h3" fill="none" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                </div>
                 <p>Affordable &amp; Lowest Pricing</p>
               </div>
               <div className="why-card">
-                <div className="why-icon"></div>
+                <div className="why-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22s10-4.5 10-10V7l-2-4H4L2 7v5c0 5.5 10 10 10 10z" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                </div>
                 <p>100% Satisfaction Guaranteed</p>
               </div>
               <div className="why-card">
-                <div className="why-icon"></div>
+                <div className="why-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4z" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <path d="M4 20a8 8 0 0 1 16 0" fill="none" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                </div>
                 <p>Professional Team</p>
               </div>
               <div className="why-card">
-                <div className="why-icon"></div>
+                <div className="why-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 1.5a10.5 10.5 0 0 1 10.5 10.5A10.5 10.5 0 0 1 12 22.5 10.5 10.5 0 0 1 1.5 12 10.5 10.5 0 0 1 12 1.5z" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <path d="M12 7v5l3 3" fill="none" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                </div>
                 <p>1 Year Free Support</p>
               </div>
             </div>
           </div>
           <div className="why-us-image">
-            <div className="image-placeholder">Your image here</div>
+            <video className="why-us-video" src="/images/logo_ai.mp4" autoPlay muted loop playsInline>
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </section>
@@ -252,81 +282,42 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
           <div className="services-grid">
             <div className="service-card">
               <div className="icon-placeholder">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="15" y="15" width="70" height="60" fill="none" stroke="currentColor" strokeWidth="2.5" rx="3"/>
-                  <line x1="15" y1="28" x2="85" y2="28" stroke="currentColor" strokeWidth="2.5"/>
-                  <line x1="20" y1="38" x2="80" y2="38" stroke="currentColor" strokeWidth="1.5" opacity="0.7"/>
-                  <line x1="20" y1="48" x2="80" y2="48" stroke="currentColor" strokeWidth="1.5" opacity="0.7"/>
-                  <line x1="20" y1="58" x2="65" y2="58" stroke="currentColor" strokeWidth="1.5" opacity="0.7"/>
-                </svg>
+                <img src="/images/website-static.gif" alt="Animated static website icon" />
               </div>
               <h3>Static Websites</h3>
               <p>Fast, reliable, and cost-effective static websites perfect for showcasing your business.</p>
             </div>
             <div className="service-card">
               <div className="icon-placeholder">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="35" r="8" fill="currentColor"/>
-                  <circle cx="35" cy="55" r="8" fill="currentColor"/>
-                  <circle cx="65" cy="55" r="8" fill="currentColor"/>
-                  <circle cx="50" cy="70" r="8" fill="currentColor"/>
-                  <line x1="50" y1="43" x2="50" y2="62" stroke="currentColor" strokeWidth="1.5"/>
-                  <line x1="50" y1="43" x2="37" y2="52" stroke="currentColor" strokeWidth="1.5"/>
-                  <line x1="50" y1="43" x2="63" y2="52" stroke="currentColor" strokeWidth="1.5"/>
-                  <line x1="50" y1="62" x2="50" y2="62" stroke="currentColor" strokeWidth="1.5"/>
-                </svg>
+                <img src="/images/website-dynamic.gif" alt="Animated dynamic website icon" />
               </div>
               <h3>Dynamic Websites</h3>
               <p>Interactive and engaging dynamic websites with databases and user interactions.</p>
             </div>
             <div className="service-card">
               <div className="icon-placeholder">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <g transform="translate(50, 50)">
-                    <path d="M-15,-15 L15,-15 L20,-5 L20,20 L-20,20 L-20,-5 Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/>
-                    <line x1="-10" y1="-8" x2="10" y2="-8" stroke="currentColor" strokeWidth="2"/>
-                    <circle cx="-5" cy="5" r="3" fill="currentColor"/>
-                    <circle cx="5" cy="5" r="3" fill="currentColor"/>
-                    <path d="M-8,12 L8,12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                  </g>
-                </svg>
+                <img src="/images/website-custom.gif" alt="Animated custom solution icon" />
               </div>
               <h3>Customized Solutions</h3>
               <p>Tailored web solutions designed specifically for your unique business needs.</p>
             </div>
             <div className="service-card">
               <div className="icon-placeholder">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="50" r="38" fill="#e0f7ff"/>
-                  <path d="M20 35h60v30a10 10 0 0 1-10 10H30a10 10 0 0 1-10-10V35z" fill="none" stroke="#1d8cff" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M32 65h36" fill="none" stroke="#1d8cff" strokeWidth="6" strokeLinecap="round"/>
-                  <path d="M40 45h20" fill="none" stroke="#1d8cff" strokeWidth="6" strokeLinecap="round"/>
-                </svg>
+                <img src="/images/website-support.gif" alt="Animated AI growth icon" />
               </div>
               <h3>AI-Powered Growth</h3>
               <p>Leverage AI to optimize your online presence and drive business growth.</p>
             </div>
             <div className="service-card">
               <div className="icon-placeholder">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="50" cy="50" r="38" fill="#3ddc84"/>
-                  <rect x="22" y="30" width="56" height="36" rx="10" fill="#1e4025"/>
-                  <rect x="18" y="24" width="12" height="6" rx="3" fill="#fff"/>
-                  <rect x="70" y="24" width="12" height="6" rx="3" fill="#fff"/>
-                  <circle cx="36" cy="50" r="4" fill="#fff"/>
-                  <circle cx="64" cy="50" r="4" fill="#fff"/>
-                  <path d="M30 70h40" stroke="#fff" strokeWidth="6" strokeLinecap="round"/>
-                </svg>
+                <img src="/images/website-android.gif" alt="Animated Android app icon" />
               </div>
               <h3>Android Apps</h3>
               <p>Custom mobile apps for Android to reach your audience on the go.</p>
             </div>
             <div className="service-card">
               <div className="icon-placeholder">
-                <svg viewBox="0 0 814 1000" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="407" cy="500" r="390" fill="#1d8cff" opacity="0.15"/>
-                  <path fill="#111" d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57-155.5-127C46.7 790.7 0 663 0 541.8c0-194.4 126.4-297.5 250.8-297.5 66.1 0 121.2 43.4 162.7 43.4 39.5 0 101.1-46 176.3-46 28.5 0 130.9 2.6 198.3 99.2zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z"/>
-                </svg>
+                <img src="/images/website-ios.gif" alt="Animated iOS app icon" />
               </div>
               <h3>iOS Apps</h3>
               <p>Native iOS apps designed for seamless user experience on Apple devices.</p>
