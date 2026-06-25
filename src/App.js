@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 
 function App() {
@@ -104,6 +104,14 @@ function App() {
   const repeatedTechItems = [...techItems, ...techItems];
   const autoScrollRef = useRef(true);
   const restartTimeoutRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   const scrollSlider = (distance) => {
     const slider = sliderRef.current;
@@ -134,8 +142,23 @@ function App() {
     const slider = sliderRef.current;
     const speed = 0.12;
 
+    // Disable auto-scroll on mobile
+    if (isMobile) {
+      autoScrollRef.current = false;
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
+      }
+      return;
+    }
+
+    autoScrollRef.current = true;
+
     const step = (timestamp) => {
-      if (!slider || !autoScrollRef.current) return; // Add this check
+      if (!slider || !autoScrollRef.current) {
+        animationRef.current = requestAnimationFrame(step);
+        return;
+      }
       if (lastTimestampRef.current === null) {
         lastTimestampRef.current = timestamp;
       }
@@ -157,15 +180,16 @@ function App() {
     animationRef.current = requestAnimationFrame(step);
 
     return () => {
-    if (animationRef.current) {
+      if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
-    }
-    if (restartTimeoutRef.current) {
+      }
+      if (restartTimeoutRef.current) {
         clearTimeout(restartTimeoutRef.current);
-    }
-    lastTimestampRef.current = null;
-};
-}, []);
+      }
+      lastTimestampRef.current = null;
+    };
+  }, [isMobile]);
+
 
   return (
     <div className="App">
@@ -355,7 +379,7 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
 
           <div className="tech-slider-wrapper">
             <div className="tech-slider" ref={sliderRef}>
-              {repeatedTechItems.map((item, index) => (
+              {(isMobile ? techItems : repeatedTechItems).map((item, index) => (
                 <div key={`${item.name}-${index}`} className="tech-slide">
                   <div className="tech-logo-item">
                     <div className="tech-logo-placeholder">{item.icon}</div>
