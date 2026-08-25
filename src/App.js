@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import './App.css'; 
 
 function App() {
+  const publicUrl = process.env.PUBLIC_URL || '';
   const sliderRef = useRef(null);
   const animationRef = useRef(null);
   const lastTimestampRef = useRef(null);
@@ -195,7 +196,7 @@ function App() {
     <div className="App">
       <header className="header">
         <div className="header-brand">
-          <img src="/images/ai-powered-solution-logo.png" alt="AI Powered Solution logo" className="header-logo" />
+          <img src={`${publicUrl}/images/ai-powered-solution-logo.png`} alt="AI Powered Solution logo" className="header-logo" />
           <h1 className="company-name">AI Powered Solution</h1>
         </div>
         <nav className="nav">
@@ -217,7 +218,7 @@ function App() {
       <section className="hero">
         <div className="hero-content">
           <div className="hero-logo">
-            <img src="/images/ai-powered-solution-logo.png" alt="AI Powered Solution logo" className="hero-logo-img" />
+            <img src={`${publicUrl}/images/ai-powered-solution-logo.png`} alt="AI Powered Solution logo" className="hero-logo-img" />
           </div>
           <h2>Welcome to AI Powered Solution</h2>
           <p className="hero-text">
@@ -292,7 +293,7 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
             </div>
           </div>
           <div className="why-us-image">
-            <video className="why-us-video" src="/images/logo_ai.mp4" autoPlay muted loop playsInline>
+            <video className="why-us-video" src={`${publicUrl}/images/logo_ai.mp4`} autoPlay muted loop playsInline>
               Your browser does not support the video tag.
             </video>
           </div>
@@ -306,42 +307,42 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
           <div className="services-grid">
             <div className="service-card">
               <div className="icon-placeholder">
-                <img src="/images/website-static.gif" alt="Animated static website icon" />
+                <img src={`${publicUrl}/images/website-static.gif`} alt="Animated static website icon" />
               </div>
               <h3>Static Websites</h3>
               <p>Fast, reliable, and cost-effective static websites perfect for showcasing your business.</p>
             </div>
             <div className="service-card">
               <div className="icon-placeholder">
-                <img src="/images/website-dynamic.gif" alt="Animated dynamic website icon" />
+                <img src={`${publicUrl}/images/website-dynamic.gif`} alt="Animated dynamic website icon" />
               </div>
               <h3>Dynamic Websites</h3>
               <p>Interactive and engaging dynamic websites with databases and user interactions.</p>
             </div>
             <div className="service-card">
               <div className="icon-placeholder">
-                <img src="/images/website-custom.gif" alt="Animated custom solution icon" />
+                <img src={`${publicUrl}/images/website-custom.gif`} alt="Animated custom solution icon" />
               </div>
               <h3>Customized Solutions</h3>
               <p>Tailored web solutions designed specifically for your unique business needs.</p>
             </div>
             <div className="service-card">
               <div className="icon-placeholder">
-                <img src="/images/website-support.gif" alt="Animated AI growth icon" />
+                <img src={`${publicUrl}/images/website-support.gif`} alt="Animated AI growth icon" />
               </div>
               <h3>AI-Powered Growth</h3>
               <p>Leverage AI to optimize your online presence and drive business growth.</p>
             </div>
             <div className="service-card">
               <div className="icon-placeholder">
-                <img src="/images/website-android.gif" alt="Animated Android app icon" />
+                <img src={`${publicUrl}/images/website-android.gif`} alt="Animated Android app icon" />
               </div>
               <h3>Android Apps</h3>
               <p>Custom mobile apps for Android to reach your audience on the go.</p>
             </div>
             <div className="service-card">
               <div className="icon-placeholder">
-                <img src="/images/website-ios.gif" alt="Animated iOS app icon" />
+                <img src={`${publicUrl}/images/website-ios.gif`} alt="Animated iOS app icon" />
               </div>
               <h3>iOS Apps</h3>
               <p>Native iOS apps designed for seamless user experience on Apple devices.</p>
