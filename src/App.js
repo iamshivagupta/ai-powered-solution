@@ -1,5 +1,32 @@
 import { useEffect, useRef, useState } from 'react';
-import './App.css'; 
+import { motion, useReducedMotion } from 'motion/react';
+import './App.css';
+
+// Shared scroll-in animation for bento cards: fade + slight scale/translate, staggered by index.
+function BentoCard({ index = 0, className = '', children, ...rest }) {
+  const reduceMotion = useReducedMotion();
+
+  if (reduceMotion) {
+    return (
+      <div className={className} {...rest}>
+        {children}
+      </div>
+    );
+  }
+
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1, margin: '0px 0px -80px 0px' }}
+      transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
+      {...rest}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 function App() {
   const publicUrl = process.env.PUBLIC_URL || '';
@@ -102,6 +129,98 @@ function App() {
     },
   ];
 
+  const whyUsItems = [
+    {
+      label: 'Payment Gateway Integration',
+      icon: (
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="6" width="20" height="12" rx="2" ry="2" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path d="M2 10h20" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path d="M6 16v-2" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path d="M10 16v-2" fill="none" stroke="currentColor" strokeWidth="2" />
+        </svg>
+      ),
+    },
+    {
+      label: 'Affordable & Lowest Pricing',
+      icon: (
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 7h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7z" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path d="M4 11h16" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path d="M7 4h3" fill="none" stroke="currentColor" strokeWidth="2" />
+        </svg>
+      ),
+    },
+    {
+      label: '100% Satisfaction Guaranteed',
+      icon: (
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 22s10-4.5 10-10V7l-2-4H4L2 7v5c0 5.5 10 10 10 10z" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" strokeWidth="2" />
+        </svg>
+      ),
+    },
+    {
+      label: 'Professional Team',
+      icon: (
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4z" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path d="M4 20a8 8 0 0 1 16 0" fill="none" stroke="currentColor" strokeWidth="2" />
+        </svg>
+      ),
+    },
+    {
+      label: '1 Year Free Support',
+      icon: (
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 1.5a10.5 10.5 0 0 1 10.5 10.5A10.5 10.5 0 0 1 12 22.5 10.5 10.5 0 0 1 1.5 12 10.5 10.5 0 0 1 12 1.5z" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path d="M12 7v5l3 3" fill="none" stroke="currentColor" strokeWidth="2" />
+        </svg>
+      ),
+    },
+  ];
+
+  const serviceItems = [
+    {
+      gif: 'website-static.gif',
+      alt: 'Animated static website icon',
+      title: 'Static Websites',
+      text: 'Fast, reliable, and cost-effective static websites perfect for showcasing your business.',
+      large: true,
+    },
+    {
+      gif: 'website-dynamic.gif',
+      alt: 'Animated dynamic website icon',
+      title: 'Dynamic Websites',
+      text: 'Interactive and engaging dynamic websites with databases and user interactions.',
+    },
+    {
+      gif: 'website-custom.gif',
+      alt: 'Animated custom solution icon',
+      title: 'Customized Solutions',
+      text: 'Tailored web solutions designed specifically for your unique business needs.',
+    },
+    {
+      gif: 'website-support.gif',
+      alt: 'Animated AI growth icon',
+      title: 'AI-Powered Growth',
+      text: 'Leverage AI to optimize your online presence and drive business growth.',
+      large: true,
+    },
+    {
+      gif: 'website-android.gif',
+      alt: 'Animated Android app icon',
+      title: 'Android Apps',
+      text: 'Custom mobile apps for Android to reach your audience on the go.',
+    },
+    {
+      gif: 'website-ios.gif',
+      alt: 'Animated iOS app icon',
+      title: 'iOS Apps',
+      text: 'Native iOS apps designed for seamless user experience on Apple devices.',
+    },
+  ];
+
   const repeatedTechItems = [...techItems, ...techItems];
   const autoScrollRef = useRef(true);
   const restartTimeoutRef = useRef(null);
@@ -191,169 +310,148 @@ function App() {
     };
   }, [isMobile]);
 
+  const reduceMotion = useReducedMotion();
 
   return (
     <div className="App">
+      <div className="bg-aurora" aria-hidden="true">
+        <span className="aurora-blob aurora-blob-a" />
+        <span className="aurora-blob aurora-blob-b" />
+        <span className="aurora-blob aurora-blob-c" />
+      </div>
+
       <header className="header">
-        <div className="header-brand">
-          <img src={`${publicUrl}/images/ai-powered-solution-logo.png`} alt="AI Powered Solution logo" className="header-logo" />
-          <h1 className="company-name">AI Powered Solution</h1>
+        <div className="header-pill">
+          <div className="header-brand">
+            <img src={`${publicUrl}/images/ai-powered-solution-logo.png`} alt="AI Powered Solution logo" className="header-logo" />
+            <h1 className="company-name">AI Powered Solution</h1>
+          </div>
+          <nav className="nav">
+            <a href="#services">Services</a>
+            {/* <a href="#contact">Contact</a> */}
+          </nav>
+          <a href="tel:+919412333244" className="contact-phone">Call on +91 9412333244</a>
         </div>
-        <nav className="nav">
-          <a href="#services">Services</a>
-          {/* <a href="#contact">Contact</a> */}
-        </nav>
-        <div className="contact-phone">Call on +91 9412333244</div>
       </header>
 
       <div className="floating-actions">
+        <a href="https://wa.me/919412333244" target="_blank" rel="noreferrer" className="action-button action-whatsapp" aria-label="WhatsApp us">
+          <svg viewBox="0 0 32 32" className="action-icon-svg" aria-hidden="true">
+            <path fill="currentColor" d="M16.004 3C9.377 3 4 8.373 4 15c0 2.386.696 4.607 1.897 6.48L4 29l7.72-1.86A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3Zm0 21.8a9.76 9.76 0 0 1-4.98-1.36l-.357-.21-4.58 1.103 1.222-4.46-.232-.366A9.77 9.77 0 0 1 5.6 15c0-5.744 4.66-10.4 10.404-10.4S26.4 9.256 26.4 15s-4.652 9.8-10.396 9.8Zm5.37-7.34c-.294-.147-1.74-.858-2.01-.956-.27-.098-.467-.147-.664.147-.196.294-.76.956-.932 1.152-.172.196-.343.221-.637.074-.294-.147-1.24-.457-2.362-1.457-.873-.779-1.463-1.741-1.635-2.035-.172-.294-.018-.453.129-.6.132-.132.294-.343.441-.515.147-.172.196-.294.294-.49.098-.196.049-.368-.024-.515-.074-.147-.664-1.6-.91-2.19-.24-.576-.484-.498-.664-.507l-.566-.01c-.196 0-.515.074-.784.368-.27.294-1.03 1.006-1.03 2.455 0 1.449 1.055 2.849 1.202 3.045.147.196 2.077 3.17 5.033 4.445.703.303 1.252.484 1.68.62.706.225 1.348.193 1.856.117.566-.084 1.74-.712 1.985-1.4.245-.688.245-1.278.172-1.4-.073-.123-.269-.196-.563-.343Z"/>
+          </svg>
+        </a>
         <a href="tel:+919412333244" className="action-button action-call" aria-label="Call us">
           <span className="action-icon">📞</span>
-        </a>
-        <a href="https://wa.me/919412333244" target="_blank" rel="noreferrer" className="action-button action-whatsapp" aria-label="WhatsApp us">
-          <span className="action-icon">💬</span>
         </a>
       </div>
 
       <section className="hero">
-        <div className="hero-content">
-          <div className="hero-logo">
-            <img src={`${publicUrl}/images/ai-powered-solution-logo.png`} alt="AI Powered Solution logo" className="hero-logo-img" />
-          </div>
-          <h2>Welcome to AI Powered Solution</h2>
-          <p className="hero-text">
-            We don't just build websites -- we grow your business.
-          </p>
-          <p className="hero-text">
+        <div className="hero-grid">
+          <motion.div
+            className="hero-content"
+            initial={reduceMotion ? undefined : { opacity: 0, y: 30 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          >
+            <span className="hero-eyebrow">AI-Driven Digital Studio</span>
+            <h2>Welcome to AI Powered Solution</h2>
+            <p className="hero-text">
+              We don't just build websites -- we grow your business.
+            </p>
+            <p className="hero-text">
 We build AI-driven websites, mobile apps, and custom digital solutions that help businesses in India grow online. Our work is designed to be SEO-friendly, fast, and conversion focused.
-          </p>
-          <button className="cta-button" onClick={() => window.scrollTo({ top: document.getElementById('services').offsetTop, behavior: 'smooth' })}>
-            Explore Our Services
-          </button>
+            </p>
+            <div className="hero-actions">
+              <button className="cta-button" onClick={() => window.scrollTo({ top: document.getElementById('services').offsetTop, behavior: 'smooth' })}>
+                Explore Our Services
+              </button>
+              <a href="tel:+919412333244" className="cta-button cta-button-ghost">
+                Call Now
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="hero-visual"
+            initial={reduceMotion ? undefined : { opacity: 0, scale: 0.9 }}
+            animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
+          >
+            <div className="hero-orb">
+              <div className="hero-orb-core" />
+              <div className="hero-logo">
+                <img src={`${publicUrl}/images/ai-powered-solution-logo.png`} alt="AI Powered Solution logo" className="hero-logo-img" />
+              </div>
+            </div>
+            <div className="hero-chip hero-chip-services">
+              <span className="hero-chip-value">{serviceItems.length}+</span>
+              <span className="hero-chip-label">Core Services</span>
+            </div>
+            <div className="hero-chip hero-chip-tech">
+              <span className="hero-chip-value">{techItems.length}+</span>
+              <span className="hero-chip-label">Technologies</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       <section className="why-us">
-        <div className="why-us-inner">
-          <div className="why-us-copy">
-            <span className="why-label">WHY HIRE US!</span>
-            <h2>AI Powered Solution delivers stronger experience and better digital results.</h2>
-            <p>
-              Our team builds secure, responsive, and SEO-friendly websites that work hard for your business. We deliver higher conversions, faster performance, and long-term growth across India.
-            </p>
-            <div className="why-grid">
-              <div className="why-card">
-                <div className="why-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="6" width="20" height="12" rx="2" ry="2" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <path d="M2 10h20" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <path d="M6 16v-2" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <path d="M10 16v-2" fill="none" stroke="currentColor" strokeWidth="2" />
-                  </svg>
-                </div>
-                <p>Payment Gateway Integration</p>
-              </div>
-              <div className="why-card">
-                <div className="why-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 7h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7z" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <path d="M4 11h16" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <path d="M7 4h3" fill="none" stroke="currentColor" strokeWidth="2" />
-                  </svg>
-                </div>
-                <p>Affordable &amp; Lowest Pricing</p>
-              </div>
-              <div className="why-card">
-                <div className="why-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 22s10-4.5 10-10V7l-2-4H4L2 7v5c0 5.5 10 10 10 10z" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" strokeWidth="2" />
-                  </svg>
-                </div>
-                <p>100% Satisfaction Guaranteed</p>
-              </div>
-              <div className="why-card">
-                <div className="why-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4z" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <path d="M4 20a8 8 0 0 1 16 0" fill="none" stroke="currentColor" strokeWidth="2" />
-                  </svg>
-                </div>
-                <p>Professional Team</p>
-              </div>
-              <div className="why-card">
-                <div className="why-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 1.5a10.5 10.5 0 0 1 10.5 10.5A10.5 10.5 0 0 1 12 22.5 10.5 10.5 0 0 1 1.5 12 10.5 10.5 0 0 1 12 1.5z" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <path d="M12 7v5l3 3" fill="none" stroke="currentColor" strokeWidth="2" />
-                  </svg>
-                </div>
-                <p>1 Year Free Support</p>
-              </div>
-            </div>
-          </div>
-          <div className="why-us-image">
+        <div className="why-us-layout">
+          <BentoCard index={0} className="bento-card why-media-card">
             <video className="why-us-video" src={`${publicUrl}/images/logo_ai.mp4`} autoPlay muted loop playsInline>
               Your browser does not support the video tag.
             </video>
+          </BentoCard>
+
+          <div className="why-us-content">
+            <BentoCard index={1} className="bento-card why-intro-card">
+              <span className="why-label">WHY HIRE US!</span>
+              <h2>AI Powered Solution delivers stronger experience and better digital results.</h2>
+              <p>
+                Our team builds secure, responsive, and SEO-friendly websites that work hard for your business. We deliver higher conversions, faster performance, and long-term growth across India.
+              </p>
+            </BentoCard>
+
+            <div className="bento-grid why-features-grid">
+              {whyUsItems.map((item, i) => (
+                <BentoCard key={item.label} index={i + 2} className="bento-card why-card">
+                  <div className="why-icon" aria-hidden="true">{item.icon}</div>
+                  <p>{item.label}</p>
+                </BentoCard>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section id="services" className="services">
         <div className="services-container">
-          <h2>Our Services</h2>
-          <p className="services-subtitle">Comprehensive solutions tailored for your business needs</p>
-          <div className="services-grid">
-            <div className="service-card">
-              <div className="icon-placeholder">
-                <img src={`${publicUrl}/images/website-static.gif`} alt="Animated static website icon" />
-              </div>
-              <h3>Static Websites</h3>
-              <p>Fast, reliable, and cost-effective static websites perfect for showcasing your business.</p>
-            </div>
-            <div className="service-card">
-              <div className="icon-placeholder">
-                <img src={`${publicUrl}/images/website-dynamic.gif`} alt="Animated dynamic website icon" />
-              </div>
-              <h3>Dynamic Websites</h3>
-              <p>Interactive and engaging dynamic websites with databases and user interactions.</p>
-            </div>
-            <div className="service-card">
-              <div className="icon-placeholder">
-                <img src={`${publicUrl}/images/website-custom.gif`} alt="Animated custom solution icon" />
-              </div>
-              <h3>Customized Solutions</h3>
-              <p>Tailored web solutions designed specifically for your unique business needs.</p>
-            </div>
-            <div className="service-card">
-              <div className="icon-placeholder">
-                <img src={`${publicUrl}/images/website-support.gif`} alt="Animated AI growth icon" />
-              </div>
-              <h3>AI-Powered Growth</h3>
-              <p>Leverage AI to optimize your online presence and drive business growth.</p>
-            </div>
-            <div className="service-card">
-              <div className="icon-placeholder">
-                <img src={`${publicUrl}/images/website-android.gif`} alt="Animated Android app icon" />
-              </div>
-              <h3>Android Apps</h3>
-              <p>Custom mobile apps for Android to reach your audience on the go.</p>
-            </div>
-            <div className="service-card">
-              <div className="icon-placeholder">
-                <img src={`${publicUrl}/images/website-ios.gif`} alt="Animated iOS app icon" />
-              </div>
-              <h3>iOS Apps</h3>
-              <p>Native iOS apps designed for seamless user experience on Apple devices.</p>
-            </div>
+          <BentoCard index={0} className="services-heading">
+            <h2>Our Services</h2>
+            <p className="services-subtitle">Comprehensive solutions tailored for your business needs</p>
+          </BentoCard>
+          <div className="bento-grid services-bento">
+            {serviceItems.map((service, i) => (
+              <BentoCard
+                key={service.title}
+                index={i + 1}
+                className={`bento-card service-card${service.large ? ' service-card-large' : ''}`}
+              >
+                <div className="icon-placeholder">
+                  <img src={`${publicUrl}/images/${service.gif}`} alt={service.alt} />
+                </div>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+              </BentoCard>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="tech-stack">
         <div className="tech-container">
-          <div className="tech-content">
+          <BentoCard index={0} className="tech-heading">
+            <span className="tech-eyebrow">Tech We Use</span>
             <h2>Our Technology Stack</h2>
             <p className="tech-description">
               We use industry-leading technologies to build robust, scalable solutions. Our expertise spans across modern web frameworks, backend systems, and cloud infrastructure to deliver high-performance applications for your business.
@@ -376,28 +474,30 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
                 <span>Cloud-ready infrastructure</span>
               </div>
             </div>
-          </div>
+          </BentoCard>
 
-          <div className="tech-slider-wrapper">
-            <div className="tech-slider" ref={sliderRef}>
-              {(isMobile ? techItems : repeatedTechItems).map((item, index) => (
-                <div key={`${item.name}-${index}`} className="tech-slide">
-                  <div className="tech-logo-item">
-                    <div className="tech-logo-placeholder">{item.icon}</div>
-                    <p>{item.name}</p>
+          <BentoCard index={1} className="bento-card tech-showcase">
+            <div className="tech-slider-fade">
+              <div className="tech-slider" ref={sliderRef}>
+                {(isMobile ? techItems : repeatedTechItems).map((item, index) => (
+                  <div key={`${item.name}-${index}`} className="tech-slide">
+                    <div className="tech-logo-item">
+                      <div className="tech-logo-placeholder">{item.icon}</div>
+                      <p>{item.name}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
             <div className="slider-controls">
-              <button type="button" className="slider-button" onClick={() => scrollSlider(-260)}>
-                Prev
+              <button type="button" className="slider-button" onClick={() => scrollSlider(-260)} aria-label="Scroll left">
+                ← Prev
               </button>
-              <button type="button" className="slider-button" onClick={() => scrollSlider(260)}>
-                Next
+              <button type="button" className="slider-button" onClick={() => scrollSlider(260)} aria-label="Scroll right">
+                Next →
               </button>
             </div>
-          </div>
+          </BentoCard>
         </div>
       </section>
 
@@ -415,7 +515,6 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
       </section> */}
 
       <footer className="footer">
-        
         <p>&copy; 2026 AI Powered Solution. All rights reserved.</p>
       </footer>
     </div>
