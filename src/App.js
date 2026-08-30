@@ -353,13 +353,13 @@ function App() {
             animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
           >
-            <span className="hero-eyebrow">AI-Driven Digital Studio</span>
+            <span className="hero-eyebrow">Website Designer in Aligarh &amp; Agra</span>
             <h2>Welcome to AI Powered Solution</h2>
             <p className="hero-text">
               We don't just build websites -- we grow your business.
             </p>
             <p className="hero-text">
-We build AI-driven websites, mobile apps, and custom digital solutions that help businesses in India grow online. Our work is designed to be SEO-friendly, fast, and conversion focused.
+Affordable, custom website design and mobile app development for businesses in Aligarh, Agra, and nearby areas. We build AI-driven websites, mobile apps, and custom digital solutions that help businesses across India grow online. Our work is designed to be SEO-friendly, fast, and conversion focused.
             </p>
             <div className="hero-actions">
               <button className="cta-button" onClick={() => window.scrollTo({ top: document.getElementById('services').offsetTop, behavior: 'smooth' })}>
@@ -408,7 +408,7 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
               <span className="why-label">WHY HIRE US!</span>
               <h2>AI Powered Solution delivers stronger experience and better digital results.</h2>
               <p>
-                Our team builds secure, responsive, and SEO-friendly websites that work hard for your business. We deliver higher conversions, faster performance, and long-term growth across India.
+                Our team builds secure, responsive, and SEO-friendly websites that work hard for your business. As a trusted website designer in Aligarh and Agra, we deliver higher conversions, faster performance, and long-term growth for clients across Uttar Pradesh and India.
               </p>
             </BentoCard>
 
@@ -428,7 +428,7 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
         <div className="services-container">
           <BentoCard index={0} className="services-heading">
             <h2>Our Services</h2>
-            <p className="services-subtitle">Comprehensive solutions tailored for your business needs</p>
+            <p className="services-subtitle">Affordable, customized website and mobile app solutions for businesses in Aligarh, Agra, and nearby areas</p>
           </BentoCard>
           <div className="bento-grid services-bento">
             {serviceItems.map((service, i) => (
@@ -514,7 +514,24 @@ We build AI-driven websites, mobile apps, and custom digital solutions that help
         </div>
       </section> */}
 
+      <section id="service-areas" className="service-areas">
+        <div className="service-areas-container">
+          <h2>Website Designer &amp; Mobile App Developer in Aligarh, Agra &amp; Nearby Areas</h2>
+          <p>
+            AI Powered Solution proudly serves businesses across Aligarh, Agra, Mathura, Hathras, Etah, and surrounding areas in Uttar Pradesh with affordable, customized website design, e-commerce development, and mobile app development. We also serve clients remotely across India.
+          </p>
+          <ul className="service-areas-list">
+            <li>Website Designer in Aligarh</li>
+            <li>Website Designer in Agra</li>
+            <li>Mobile App Development in Aligarh &amp; Agra</li>
+            <li>Affordable Custom Website Solutions</li>
+            <li>E-commerce Website Development</li>
+          </ul>
+        </div>
+      </section>
+
       <footer className="footer">
+        <p>AI Powered Solution -- Website Designer in Aligarh &amp; Agra | Affordable Custom Websites &amp; Mobile Apps</p>
         <p>&copy; 2026 AI Powered Solution. All rights reserved.</p>
       </footer>
     </div>
